@@ -6,14 +6,15 @@ class Library {
   private string $name;
   private string $address;
   private array $rooms;
+  private array $checkedOutBooks;
 
   public function __construct($name, $address, $numRooms) {
-    $this->name = "";
-    $this->address = "";
+    $this->name = $name;
+    $this->address = $address;
     $this->rooms = [];
 
     for ($i = 0; $i < $numRooms; $i++) {
-      $this->rooms[] = new Bookshelf(count($this->rooms) + 1);
+      $this->rooms[] = new LibraryRoom(count($this->rooms) + 1);
     }
   }
 
@@ -29,8 +30,8 @@ class Library {
     return $this->rooms;
   }
 
-  public function getRoom($id): LibraryRoom|null {
-    foreach ($this->rooms as $index => $room) {
+  public function getRoomById($id): LibraryRoom|null {
+    foreach ($this->rooms as $room) {
       if ($room->getId() === $id) {
         return $room;
       }

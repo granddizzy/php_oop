@@ -2,8 +2,6 @@
 
 namespace App\Oop;
 
-use Grpc\Server;
-
 class App {
   public static Config $config;
 
@@ -16,8 +14,8 @@ class App {
       "Республика Беларусь, г.Минск, пр. Независимости 116",
       10);
 
-    $room_1 = $library->getRoom('1');
-    $room_2 = $library->getRoom('2');
+    $room_1 = $library->getRoomById('1');
+    $room_2 = $library->getRoomById('2');
 
     $server_1 = new LibraryServer("Server 1");
 
@@ -41,5 +39,7 @@ class App {
     $server_1->addAudioBook($book_4);
     $server_1->addEBook($book_5);
     $server_1->addEBook($book_6);
+
+    $library->listBooks();
   }
 }

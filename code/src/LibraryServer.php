@@ -57,4 +57,41 @@ class LibraryServer {
     }
     return false;
   }
+
+  public function getAudioBookById(int $id): AudioBook|null {
+    foreach ($this->audioBooks as $index => $book) {
+      if ($book->getId() === $id) {
+        return $book;
+      }
+    }
+
+    return null;
+  }
+
+  public function getEBookById(int $id): EBook|null {
+    foreach ($this->audioBooks as $index => $book) {
+      if ($book->getId() === $id) {
+        return $book;
+      }
+    }
+
+    return null;
+  }
+
+  public function getAudioBooks(): array {
+    return $this->audioBooks;
+  }
+
+  public function getEBooks(): array {
+    return $this->eBooks;
+  }
+
+  public function listBooks(): void {
+    foreach ($this->audioBooks as $book) {
+      echo $book->getTitle() . " by " . implode(',', $book->getAuthors()) . " (" . $book->getType() . ")\n";
+    }
+    foreach ($this->eBooks as $book) {
+      echo $book->getTitle() . " by " . implode(',', $book->getAuthors()) . " (" . $book->getType() . ")\n";
+    }
+  }
 }

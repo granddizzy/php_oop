@@ -40,7 +40,7 @@ class LibraryRoom {
     $this->servers[] = $server;
   }
 
-  public function delServer(LibraryServer $server): bool {
+  public function delServer($id): bool {
     foreach ($this->servers as $index => $server) {
       if ($server->getId() === $id) {
         unset($this->servers[$index]);
@@ -56,6 +56,10 @@ class LibraryRoom {
   public function listBooks(): void {
     foreach ($this->bookcases as $bookcase) {
       $bookcase->listBooks();
+    }
+
+    foreach ($this->servers as $server) {
+      $server->listBooks();
     }
   }
 }

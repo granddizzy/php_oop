@@ -35,9 +35,19 @@ class BookShelf {
     return $this->books;
   }
 
+  public function getBookById(int $id): PaperBook|null {
+    foreach ($this->books as $index => $book) {
+      if ($book->getId() === $id) {
+        return $book;
+      }
+    }
+
+    return null;
+  }
+
   public function listBooks(): void {
     foreach ($this->books as $book) {
-      echo $book->getTitle() . " by " . $book->getAuthors() . " (" . $book->getType() . ")\n";
+      echo $book->getTitle() . " by " . implode(',', $book->getAuthors()) . " (" . $book->getType() . ")\n";
     }
   }
 }

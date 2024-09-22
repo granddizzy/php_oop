@@ -4,10 +4,11 @@ namespace App\Oop;
 
 class BookCase {
   private string $id;
-  private array $shelves = [];
+  private array $shelves;
 
   public function __construct($id, $numShelves) {
     $this->id = $id;
+    $this->shelves = [];
 
     for ($i = 0; $i < $numShelves; $i++) {
       $this->shelves[] = new Bookshelf(count($this->shelves) + 1);
@@ -39,7 +40,6 @@ class BookCase {
   public function listBooks(): void {
     foreach ($this->shelves as $shelf) {
       $shelf->listBooks();
-      echo "\n";
     }
   }
 }
