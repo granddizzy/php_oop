@@ -69,6 +69,7 @@ class Library {
   public function takeBook(PaperBook $book, BookShelf $shelf): void {
     $shelf->delBook($book);
     $this->checkedOutBooks[] = $book;
+    $book->incrementReadCount();
   }
 
   public function returnBook(PaperBook $book, BookShelf $shelf): void {

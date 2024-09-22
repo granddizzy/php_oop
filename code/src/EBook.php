@@ -30,6 +30,7 @@ class EBook extends Book {
   }
 
   public function download(): string {
+    $this->incrementReadCount();
     return $this->downloadLink;
   }
 

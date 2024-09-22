@@ -25,6 +25,7 @@ class AudioBook extends Book {
   }
 
   public function play(): void {
+    $this->incrementReadCount();
     echo "Идет прослушивание " . $this->getDescription() . PHP_EOL;;
   }
 

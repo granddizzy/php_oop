@@ -6,11 +6,13 @@ abstract class Book {
   protected string $title;
   protected string $year;
   protected array $authors = [];
+  protected int $readCount;
 
   public function __construct(string $title, array $authors, int $year) {
     $this->title = $title;
     $this->authors = $authors;
     $this->year = $year;
+    $this->readCount = 0;
   }
 
   public function getTitle(): string {
@@ -23,6 +25,10 @@ abstract class Book {
 
   public function getYear(): int {
     return $this->year;
+  }
+
+  public function incrementReadCount(): void {
+    $this->readCount++;
   }
 
   abstract public function getType(): string;
