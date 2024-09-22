@@ -4,4 +4,4 @@ require('../vendor/autoload.php');
 use App\Oop\App;
 
 $app = new App();
-echo $app->run() . PHP_EOL;
+$app->run();
