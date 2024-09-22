@@ -3,10 +3,10 @@
 namespace App\Oop;
 
 class BookCase {
-  private string $id;
+  private int $id;
   private array $shelves;
 
-  public function __construct($id, $numShelves) {
+  public function __construct(int $id, int $numShelves) {
     $this->id = $id;
     $this->shelves = [];
 
@@ -15,19 +15,15 @@ class BookCase {
     }
   }
 
-  public function getId(): string {
+  public function getId(): int {
     return $this->id;
-  }
-
-  public function getShelvesCount(): int {
-    return count($this->shelves);
   }
 
   public function getShelves(): array {
     return $this->shelves;
   }
 
-  public function getShelfById(string $id): BookShelf|null {
+  public function getShelfById(int $id): BookShelf|null {
     foreach ($this->shelves as $shelf) {
       if ($shelf->getId() === $id) {
         return $shelf;

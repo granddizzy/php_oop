@@ -3,45 +3,34 @@
 namespace App\Oop;
 
 class BookShelf {
-  private string $id;
-  private array $books = [];
+  private int $id;
+  private array $books;
 
-  public function __construct(string $id) {
-    $this->id = $id;
+  public function getId(): int {
+    return $this->id;
   }
 
-  public function getId(): string {
-    return $this->id;
+  public function __construct(int $id) {
+    $this->id = $id;
+    $this->books = [];
   }
 
   public function addBook(PaperBook $book): void {
     $this->books[] = $book;
   }
 
-  public function takeBook($id): PaperBook|null {
+  public function delBook(PaperBook $delBook): bool {
     foreach ($this->books as $index => $book) {
-      if ($book->getId() === $id) {
+      if ($book === $delBook) {
         unset($this->books[$index]);
-        // Сбросим индексы массива чтобы не было дырок
-        $this->books = array_values($this->books);
-        return $book;
+        return true;
       }
     }
 
-    return null;
+    return false;
   }
 
   public function getBooks(): array {
     return $this->books;
-  }
-
-  public function getBookById(int $id): PaperBook|null {
-    foreach ($this->books as $index => $book) {
-      if ($book->getId() === $id) {
-        return $book;
-      }
-    }
-
-    return null;
   }
 }

@@ -3,28 +3,42 @@
 namespace App\Oop;
 
 class LibraryRoom {
-  public string $id;
-  private array $bookcases = [];
-  private array $servers = [];
+  public int $id;
+  public string $name;
+  private array $bookcases;
+  private array $servers;
 
-  public function __construct($id) {
+  public function __construct(int $id) {
     $this->id = $id;
+    $this->name = '';
+    $this->bookcases = [];
+    $this->servers = [];
   }
 
   public function getId(): string {
     return $this->id;
   }
 
+  public function getName(): string {
+    return $this->name;
+  }
+
+  public function setId(int $id): void {
+    $this->id = $id;
+  }
+
+  public function setName(string $name): void {
+    $this->name = $name;
+  }
+
   public function addBookcase(Bookcase $bookcase): void {
     $this->bookcases[] = $bookcase;
   }
 
-  public function delBookcase($id): bool {
+  public function delBookcase(Bookcase $delBookcase): bool {
     foreach ($this->bookcases as $index => $bookcase) {
-      if ($bookcase->getId() === $id) {
+      if ($delBookcase === $bookcase) {
         unset($this->bookcases[$index]);
-        // Сбросим индексы массива чтобы не было дырок
-        $this->bookcases = array_values($this->bookcases);
         return true;
       }
     }
@@ -44,12 +58,10 @@ class LibraryRoom {
     $this->servers[] = $server;
   }
 
-  public function delServer($id): bool {
+  public function delServer(LibraryServer $delServer): bool {
     foreach ($this->servers as $index => $server) {
-      if ($server->getId() === $id) {
+      if ($delServer === $server) {
         unset($this->servers[$index]);
-        // Сбросим индексы массива чтобы не было дырок
-        $this->servers = array_values($this->servers);
         return true;
       }
     }

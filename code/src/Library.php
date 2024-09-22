@@ -42,7 +42,7 @@ class Library {
 
   public function showBooks(): void {
     foreach ($this->rooms as $room) {
-      echo "Комната: " . $room->getId() . PHP_EOL;
+      echo "Комната: " . $room->getId() . " " . $room->getName() . PHP_EOL;
 
       foreach ($room->getBookcases() as $bookcase) {
         echo "Шкаф: " . $bookcase->getId() . PHP_EOL;
@@ -55,13 +55,29 @@ class Library {
       };
 
       foreach ($room->getServers() as $server) {
-        echo "Сервер: " . $server->getId() . PHP_EOL;
+        echo "Сервер: " . $server->getName() . PHP_EOL;
         foreach ($server->getAudioBooks() as $book) {
           echo $book->getDescription() . PHP_EOL;
         };
         foreach ($server->getEBooks() as $book) {
           echo $book->getDescription() . PHP_EOL;
         };
+      }
+    }
+  }
+
+  public function takeBook(PaperBook $book, BookShelf $shelf): void {
+    $shelf->delBook($book);
+    $this->checkedOutBooks[] = $book;
+  }
+
+  public function returnBook(PaperBook $book, BookShelf $shelf): void {
+    $this->checkedOutBooks[] = $book;
+
+    foreach ($this->checkedOutBooks as $index => $checkedOutBook) {
+      if ($checkedOutBook === $book) {
+        unset($this->checkedOutBooks[$index]);
+        $shelf->addBook($book);
       }
     }
   }

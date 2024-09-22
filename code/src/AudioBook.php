@@ -5,7 +5,6 @@ namespace App\Oop;
 class AudioBook extends Book {
   private float $duration;  // Продолжительность в минутах
   private string $narrator;  // Исполнитель
-  private string $fileAddress;
 
   public function __construct(string $title, array $authors, int $year, float $duration, string $narrator) {
     parent::__construct($title, $authors, $year);
@@ -25,9 +24,8 @@ class AudioBook extends Book {
     return 'Аудиокнига';
   }
 
-  public function listen(): void {
-    echo "Now listening to '" . $this->getTitle() . "' narrated by " . $this->getNarrator() . ". Duration: " .
-      $this->getDuration() . " minutes.\n";
+  public function play(): void {
+    echo "Идет прослушивание " . $this->getDescription() . PHP_EOL;;
   }
 
   public function getDescription(): string {
