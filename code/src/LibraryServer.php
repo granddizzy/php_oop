@@ -88,10 +88,10 @@ class LibraryServer {
 
   public function listBooks(): void {
     foreach ($this->audioBooks as $book) {
-      echo $book->getTitle() . " by " . implode(',', $book->getAuthors()) . " (" . $book->getType() . ")\n";
+      echo $book->getDescription() . PHP_EOL;
     }
     foreach ($this->eBooks as $book) {
-      echo $book->getTitle() . " by " . implode(',', $book->getAuthors()) . " (" . $book->getType() . ")\n";
+      echo $book->getDescription() . PHP_EOL;
     }
   }
 }

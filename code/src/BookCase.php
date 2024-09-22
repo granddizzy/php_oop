@@ -27,8 +27,8 @@ class BookCase {
     return $this->shelves;
   }
 
-  public function getShelfById(int $id): BookShelf|null {
-    foreach ($this->shelves as $index => $shelf) {
+  public function getShelfById(string $id): BookShelf|null {
+    foreach ($this->shelves as $shelf) {
       if ($shelf->getId() === $id) {
         return $shelf;
       }

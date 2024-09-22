@@ -30,5 +30,14 @@ abstract class Book {
     return $this->authors;
   }
 
+  public function getYear(): int {
+    return $this->year;
+  }
+
   abstract public function getType(): string;
+
+  public function getDescription(): string {
+    return $this->getType() . " Название:" . $this->getTitle() . " Авторы:" . implode(',', $this->getAuthors()) .
+      " Год: " . $this->getYear();
+  }
 }

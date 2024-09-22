@@ -15,6 +15,6 @@ class PaperBook extends Book {
   }
 
   public function getType(): string {
-    return 'Paper Book';
+    return 'Бумажная книга';
   }
 }

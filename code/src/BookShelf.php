@@ -47,7 +47,7 @@ class BookShelf {
 
   public function listBooks(): void {
     foreach ($this->books as $book) {
-      echo $book->getTitle() . " by " . implode(',', $book->getAuthors()) . " (" . $book->getType() . ")\n";
+      echo $book->getDescription() . " Страниц:" . $book->getPages() . PHP_EOL;
     }
   }
 }
