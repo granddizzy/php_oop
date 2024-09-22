@@ -25,7 +25,7 @@ class EBook extends Book {
     return 'Электронная книга';
   }
 
-  public function setDownloadLink($link): string {
+  public function setDownloadLink(string $link): void {
     $this->downloadLink = $link;
   }
 

@@ -8,7 +8,7 @@ class Library {
   private array $rooms;
   private array $checkedOutBooks;
 
-  public function __construct($name, $address, $numRooms) {
+  public function __construct(string $name, string $address, int $numRooms) {
     $this->name = $name;
     $this->address = $address;
     $this->rooms = [];
@@ -30,7 +30,7 @@ class Library {
     return $this->rooms;
   }
 
-  public function getRoomById($id): LibraryRoom|null {
+  public function getRoomById(int $id): LibraryRoom|null {
     foreach ($this->rooms as $room) {
       if ($room->getId() === $id) {
         return $room;
