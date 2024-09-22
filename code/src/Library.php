@@ -40,9 +40,29 @@ class Library {
     return null;
   }
 
-  public function listBooks(): void {
+  public function showBooks(): void {
     foreach ($this->rooms as $room) {
-      $room->listBooks();
+      echo "Комната: " . $room->getId() . PHP_EOL;
+
+      foreach ($room->getBookcases() as $bookcase) {
+        echo "Шкаф: " . $bookcase->getId() . PHP_EOL;
+        foreach ($bookcase->getShelves() as $shelf) {
+          echo "Полка: " . $shelf->getId() . PHP_EOL;
+          foreach ($shelf->getBooks() as $book) {
+            echo $book->getDescription() . PHP_EOL;
+          };
+        };
+      };
+
+      foreach ($room->getServers() as $server) {
+        echo "Сервер: " . $server->getId() . PHP_EOL;
+        foreach ($server->getAudioBooks() as $book) {
+          echo $book->getDescription() . PHP_EOL;
+        };
+        foreach ($server->getEBooks() as $book) {
+          echo $book->getDescription() . PHP_EOL;
+        };
+      }
     }
   }
 }

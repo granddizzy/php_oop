@@ -36,10 +36,4 @@ class BookCase {
 
     return null;
   }
-
-  public function listBooks(): void {
-    foreach ($this->shelves as $shelf) {
-      $shelf->listBooks();
-    }
-  }
 }

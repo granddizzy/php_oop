@@ -85,13 +85,4 @@ class LibraryServer {
   public function getEBooks(): array {
     return $this->eBooks;
   }
-
-  public function listBooks(): void {
-    foreach ($this->audioBooks as $book) {
-      echo $book->getDescription() . PHP_EOL;
-    }
-    foreach ($this->eBooks as $book) {
-      echo $book->getDescription() . PHP_EOL;
-    }
-  }
 }

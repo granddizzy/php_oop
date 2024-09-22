@@ -44,10 +44,4 @@ class BookShelf {
 
     return null;
   }
-
-  public function listBooks(): void {
-    foreach ($this->books as $book) {
-      echo $book->getDescription() . " Страниц:" . $book->getPages() . PHP_EOL;
-    }
-  }
 }

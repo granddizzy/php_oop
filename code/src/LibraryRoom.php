@@ -36,6 +36,10 @@ class LibraryRoom {
     return $this->bookcases;
   }
 
+  public function getServers(): array {
+    return $this->servers;
+  }
+
   public function addServer(LibraryServer $server): void {
     $this->servers[] = $server;
   }
@@ -51,15 +55,5 @@ class LibraryRoom {
     }
 
     return false;
-  }
-
-  public function listBooks(): void {
-    foreach ($this->bookcases as $bookcase) {
-      $bookcase->listBooks();
-    }
-
-    foreach ($this->servers as $server) {
-      $server->listBooks();
-    }
   }
 }
