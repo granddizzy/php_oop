@@ -15,7 +15,7 @@ class LibraryRoom {
     $this->servers = [];
   }
 
-  public function getId(): string {
+  public function getId(): int {
     return $this->id;
   }
 
@@ -32,15 +32,17 @@ class LibraryRoom {
   }
 
   public function addBookcase(Bookcase $bookcase): void {
-    $this->bookcases[] = $bookcase;
+    if (empty($bookcase->getId())) {
+      $bookcase->setId(uniqid());
+    }
+    $this->bookcases[$bookcase->getId()] = $bookcase;
+    $bookcase->setRoomId($this->id);
   }
 
   public function delBookcase(Bookcase $delBookcase): bool {
-    foreach ($this->bookcases as $index => $bookcase) {
-      if ($delBookcase === $bookcase) {
-        unset($this->bookcases[$index]);
-        return true;
-      }
+    if (array_key_exists($delBookcase->getId(), $this->bookcases)) {
+      unset($this->bookcases[$delBookcase->getId()]);
+      return true;
     }
 
     return false;
@@ -55,17 +57,27 @@ class LibraryRoom {
   }
 
   public function addServer(LibraryServer $server): void {
-    $this->servers[] = $server;
+    if (empty($server->getId())) {
+      $server->setId(uniqid());
+    }
+    $this->servers[$server->getId()] = $server;
   }
 
   public function delServer(LibraryServer $delServer): bool {
-    foreach ($this->servers as $index => $server) {
-      if ($delServer === $server) {
-        unset($this->servers[$index]);
-        return true;
-      }
+    if (array_key_exists($delServer->getId(), $this->servers)) {
+      unset($this->bookcases[$delServer->getId()]);
+      return true;
     }
 
     return false;
+  }
+
+  public function getBookList(): array {
+    $books = [];
+    foreach ($this->bookcases as $bookcase) {
+      array_merge($books, $bookcase->getBookList());
+    }
+
+    return $books;
   }
 }

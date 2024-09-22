@@ -3,6 +3,7 @@
 namespace App\Oop;
 
 abstract class Book {
+  protected string $id;
   protected string $title;
   protected string $year;
   protected array $authors = [];
@@ -13,6 +14,15 @@ abstract class Book {
     $this->authors = $authors;
     $this->year = $year;
     $this->readCount = 0;
+    $this->id = '';
+  }
+
+  public function getId(): string {
+    return $this->id;
+  }
+
+  public function setId(string $id): void {
+    $this->id = $id;
   }
 
   public function getTitle(): string {

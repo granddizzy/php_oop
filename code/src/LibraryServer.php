@@ -3,11 +3,13 @@
 namespace App\Oop;
 
 class LibraryServer {
+  private string $id;
   private string $name;
   private array $eBooks;     // Список электронных книг
   private array $audioBooks; // Список аудиокниг
 
-  public function __construct($name) {
+  public function __construct(string $name, string $id = '') {
+    $this->id = $id;
     $this->name = $name;
     $this->eBooks = [];
     $this->audioBooks = [];
@@ -17,33 +19,35 @@ class LibraryServer {
     return $this->name;
   }
 
-  public function addEBook(EBook $book): void {
-    $this->eBooks[] = $book;
+  public function getId(): string {
+    return $this->id;
   }
 
-  public function addAudioBook(AudioBook $book): void {
-    $this->audioBooks[] = $book;
+  public function setId(string $id): void {
+    $this->id = $id;
   }
 
-  public function removeEBook(EBook $delBook): bool {
-    foreach ($this->eBooks as $index => $book) {
-      if ($delBook === $book) {
-        unset($this->eBooks[$index]);
-        $this->eBooks = array_values($this->eBooks);
+  public function addBook(EBook|AudioBook $book): void {
+    if ($book instanceof EBook) {
+      $this->eBooks[$book->getId()] = $book;
+    } elseif ($book instanceof AudioBook) {
+      $this->audioBooks[$book->getId()] = $book;
+    }
+  }
+
+  public function removeBook(AudioBook|EBook $delBook): bool {
+    if ($delBook instanceof EBook) {
+      if (array_key_exists($delBook->getId(), $this->eBooks)) {
+        unset($this->eBooks[$delBook->getId()]);
+        return true;
+      }
+    } elseif ($delBook instanceof AudioBook) {
+      if (array_key_exists($delBook->getId(), $this->audioBooks)) {
+        unset($this->audioBooks[$delBook->getId()]);
         return true;
       }
     }
-    return false;
-  }
 
-  public function removeAudioBook(AudioBook $delBook): bool {
-    foreach ($this->audioBooks as $index => $book) {
-      if ($delBook === $book) {
-        unset($this->audioBooks[$index]);
-        $this->audioBooks = array_values($this->audioBooks);
-        return true;
-      }
-    }
     return false;
   }
 

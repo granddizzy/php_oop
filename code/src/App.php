@@ -14,12 +14,12 @@ class App {
       "Республика Беларусь, г.Минск, пр. Независимости 116",
       2);
 
-    $room_1 = $library->getRoomById('1');
-    $room_2 = $library->getRoomById('2');
+    $room_1 = $library->getRoomById(1);
+    $room_2 = $library->getRoomById(2);
 
     $server_1 = new LibraryServer("Server 1");
 
-    $bookcase_1 = new Bookcase('1', 2);
+    $bookcase_1 = new Bookcase(2);
     $bookshelf_1 = $bookcase_1->getShelfById('1');
     $bookshelf_2 = $bookcase_1->getShelfById('2');
 
@@ -42,5 +42,8 @@ class App {
     $server_1->addEBook($book_6);
 
     $library->showBooks();;
+
+    $library->takeBook($book_2);
+    $library->returnBook($book_2);
   }
 }

@@ -5,32 +5,40 @@ namespace App\Oop;
 class BookShelf {
   private int $id;
   private array $books;
+  private string $bookcaseId;
 
   public function getId(): int {
     return $this->id;
   }
 
-  public function __construct(int $id) {
+  public function __construct(int $id, string $bookcaseId) {
     $this->id = $id;
     $this->books = [];
+    $this->bookcaseId = $bookcaseId;
+  }
+
+  public function getBookcaseId(): int {
+    return $this->bookcaseId;
   }
 
   public function addBook(PaperBook $book): void {
-    $this->books[] = $book;
+    if (empty($book->getId())) {
+      $book->setId(uniqid());
+    }
+    $this->books[$book->getId()] = $book;
+    $book->setBookcaseId($this->bookcaseId);
+    $book->setShelfId($this->id);
   }
 
   public function delBook(PaperBook $delBook): bool {
-    foreach ($this->books as $index => $book) {
-      if ($book === $delBook) {
-        unset($this->books[$index]);
-        return true;
-      }
+    if (array_key_exists($delBook->getId(), $this->books)) {
+      unset($this->books[$delBook->getId()]);
+      return true;
     }
-
     return false;
   }
 
-  public function getBooks(): array {
+  public function getBooksList(): array {
     return $this->books;
   }
 }
