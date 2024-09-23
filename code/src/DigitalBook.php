@@ -2,7 +2,7 @@
 
 namespace App\Oop;
 
-class EBook extends Book {
+class DigitalBook extends Book {
   private string $fileFormat;  // Формат файла (pdf, epub и т.д.)
   private float $fileSize;  // Размер файла в мегабайтах
   private string $downloadLink;
@@ -22,7 +22,7 @@ class EBook extends Book {
   }
 
   public function getType(): string {
-    return 'Электронная книга';
+    return 'Цифровая книга';
   }
 
   public function setDownloadLink(string $link): void {

@@ -9,7 +9,7 @@ class BookCase {
   private int $roomId;
 
   public function __construct(int $numShelves) {
-    $this->id = '';
+    $this->id = uniqid();
     $this->shelves = [];
 
     for ($i = 0; $i < $numShelves; $i++) {
@@ -32,6 +32,9 @@ class BookCase {
 
   public function setId(string $id): void {
     $this->id = $id;
+    foreach ($this->shelves as $shelf) {
+      $shelf->setBookcaseId($this->id);
+    }
   }
 
   public function getShelves(): array {

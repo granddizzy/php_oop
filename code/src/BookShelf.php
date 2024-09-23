@@ -41,4 +41,8 @@ class BookShelf {
   public function getBooksList(): array {
     return $this->books;
   }
+
+  public function setBookcaseId(int $bookcaseId): void {
+    $this->bookcaseId = $bookcaseId;
+  }
 }

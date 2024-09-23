@@ -67,10 +67,8 @@ class Library {
 
   public function getBookLocation(PaperBook $searchBook): BookShelf|null {
     foreach ($this->rooms as $room) {
-      echo $searchBook->getBookcaseId();
       if (array_key_exists($searchBook->getBookcaseId(), $room->getBookcases())) {
-        echo 1;
-        $bookcase =  $room->getBookcases()[$searchBook->getBookcaseId()];
+        $bookcase = $room->getBookcases()[$searchBook->getBookcaseId()];
         if (array_key_exists($searchBook->getShelfId(), $bookcase->getShelves())) {
           return $bookcase->getShelves()[$searchBook->getShelfId()];
         }

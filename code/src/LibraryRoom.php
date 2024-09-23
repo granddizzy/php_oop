@@ -32,9 +32,6 @@ class LibraryRoom {
   }
 
   public function addBookcase(Bookcase $bookcase): void {
-    if (empty($bookcase->getId())) {
-      $bookcase->setId(uniqid());
-    }
     $this->bookcases[$bookcase->getId()] = $bookcase;
     $bookcase->setRoomId($this->id);
   }

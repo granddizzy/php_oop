@@ -30,16 +30,15 @@ class App {
     $book_2 = new PaperBook("Мастер и Маргарита", ["Михаил Булгаков"], 1967, 400);
     $book_3 = new AudioBook("Убить пересмешника", ["Харпер Ли"], 1960, 12, 'Мария Иванова');
     $book_4 = new AudioBook("Великий Гэтсби", ["Фрэнсис Скотт Фицджеральд"], 1925, 8.3, 'Джон Смит');
-    $book_5 = new EBook("Бравый солдат Швейк", ["Ярослав Гашек"], 1923, "PDF", 1.5);
-    $book_6 = new EBook("1984", ["Джордж Оруэлл"], 1949, "epub", 1.2);
+    $book_5 = new DigitalBook("Бравый солдат Швейк", ["Ярослав Гашек"], 1923, "PDF", 1.5);
+    $book_6 = new DigitalBook("1984", ["Джордж Оруэлл"], 1949, "epub", 1.2);
 
     $bookshelf_1->addBook($book_1);
     $bookshelf_2->addBook($book_2);
-
-    $server_1->addAudioBook($book_3);
-    $server_1->addAudioBook($book_4);
-    $server_1->addEBook($book_5);
-    $server_1->addEBook($book_6);
+    $server_1->addBook($book_3);
+    $server_1->addBook($book_4);
+    $server_1->addBook($book_5);
+    $server_1->addBook($book_6);
 
     $library->showBooks();;
 

@@ -27,16 +27,16 @@ class LibraryServer {
     $this->id = $id;
   }
 
-  public function addBook(EBook|AudioBook $book): void {
-    if ($book instanceof EBook) {
+  public function addBook(DigitalBook|AudioBook $book): void {
+    if ($book instanceof DigitalBook) {
       $this->eBooks[$book->getId()] = $book;
     } elseif ($book instanceof AudioBook) {
       $this->audioBooks[$book->getId()] = $book;
     }
   }
 
-  public function removeBook(AudioBook|EBook $delBook): bool {
-    if ($delBook instanceof EBook) {
+  public function removeBook(AudioBook|DigitalBook $delBook): bool {
+    if ($delBook instanceof DigitalBook) {
       if (array_key_exists($delBook->getId(), $this->eBooks)) {
         unset($this->eBooks[$delBook->getId()]);
         return true;
